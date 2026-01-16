@@ -2,12 +2,11 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Languages, Dna, Waves, Leaf, type LucideIcon } from "lucide-react";
 import Image from "next/image";
 import { TypewriterHighlight } from "./TypewriterHighlight";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 
-const Badge = ({ children, className, delay, icon: Icon, floatDuration = 3 }: { children: React.ReactNode; className?: string; delay: number; icon: LucideIcon; floatDuration?: number }) => (
+const Badge = ({ children, className, delay, emoji, floatDuration = 3 }: { children: React.ReactNode; className?: string; delay: number; emoji: string; floatDuration?: number }) => (
     <motion.div
         initial={{ scale: 0, opacity: 0, y: 0 }}
         whileInView={{
@@ -32,7 +31,17 @@ const Badge = ({ children, className, delay, icon: Icon, floatDuration = 3 }: { 
         }}
         className={`absolute z-30 flex items-center gap-2 px-4 py-2 rounded-full glass border border-white/20 text-white font-bold text-sm backdrop-blur-md shadow-xl cursor-default ${className}`}
     >
-        <Icon className="w-4 h-4 text-teal-400" />
+        <motion.span
+            className="text-xl"
+            whileHover={{
+                scale: 1.4,
+                rotate: [0, -10, 10, -10, 0],
+                transition: { duration: 0.5 }
+            }}
+            style={{ display: 'inline-block' }}
+        >
+            {emoji}
+        </motion.span>
         <span>{children}</span>
     </motion.div>
 );
@@ -42,19 +51,19 @@ export default function AboutHero() {
 
     // Dynamic description based on language
     const description1 = language === "pt"
-        ? "Sou movido por uma paixão incontrolável por todas as formas de vida na Terra. No nosso *Ocean Safari*, não serei apenas seu instrutor de segurança, mas seu biólogo guia."
-        : "I'm driven by an uncontrollable passion for all forms of life on Earth. On our *Ocean Safari*, I won't just be your safety instructor, but your biologist guide.";
+        ? "Somos movidos por uma paixão incontrolável por todas as formas de vida na Terra. No nosso *Ocean Safari*, não seremos apenas seus instrutores de segurança, mas seus biólogos guias."
+        : "We are driven by an uncontrollable passion for all forms of life on Earth. On our *Ocean Safari*, we won't just be your safety instructors, but your biologist guides.";
 
     const description2 = language === "pt"
-        ? "Minha *missão* é *traduzir o ecossistema marinho para você*, transformando curiosidade em *conhecimento e preservação*."
-        : "My *mission* is to *translate the marine ecosystem for you*, transforming curiosity into *knowledge and preservation*.";
+        ? "Nossa *missão* é *traduzir o ecossistema marinho para você*, transformando curiosidade em *conhecimento e preservação*."
+        : "Our *mission* is to *translate the marine ecosystem for you*, transforming curiosity into *knowledge and preservation*.";
 
     // Badge translations
     const badges = language === "pt"
-        ? { fluent: "Fluente em Inglês", biologist: "Biólogo", instructor: "Instrutor de Mergulho", nature: "Amante da Natureza" }
-        : { fluent: "Fluent in English", biologist: "Biologist", instructor: "Diving Instructor", nature: "Nature Lover" };
+        ? { fluent: "Fluentes em Inglês", biologist: "Biólogos", instructor: "Instrutores de Mergulho", nature: "Amantes da Natureza" }
+        : { fluent: "Fluent in English", biologist: "Biologists", instructor: "Diving Instructors", nature: "Nature Lovers" };
 
-    const title = language === "pt" ? "Quem eu sou?" : "Who am I?";
+    const title = language === "pt" ? "Quem somos?" : "Who are we?";
 
     return (
         <section id="about" className="relative py-32 px-6 bg-slate-50 overflow-hidden flex flex-col items-center">
@@ -77,57 +86,55 @@ export default function AboutHero() {
             {/* 3D Composition Container */}
             <div className="relative w-[300px] h-[300px] md:w-[450px] md:h-[450px]">
 
-                {/* Layer 1: The Circle Background */}
+                {/* Layer 1: Círculo BRANCO (fundo) */}
                 <motion.div
                     initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 0.9 }}
-                    whileHover={{ scale: 0.85 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    whileHover={{ scale: 0.95 }}
                     transition={{ duration: 0.5 }}
-                    className="absolute inset-0 rounded-full bg-gradient-to-tr from-blue-900 via-teal-900 to-teal-500 border-4 border-teal-400/30 shadow-[0_0_60px_rgba(45,212,191,0.4)] overflow-hidden z-0"
+                    className="absolute inset-0 rounded-full bg-white border-4 border-teal-400/30 shadow-[0_0_60px_rgba(45,212,191,0.3)] z-0"
+                />
+
+                {/* Layer 2: fundo.png - Imagem do oceano (meio) */}
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.85 }}
+                    whileInView={{ opacity: 1, scale: 0.92 }}
+                    whileHover={{ scale: 0.88, rotate: -1 }}
+                    transition={{ duration: 0.6, delay: 0.1 }}
+                    className="absolute inset-0 rounded-full overflow-hidden z-5"
                 >
                     <Image
                         src="/fundo.png"
                         alt="Ocean Texture"
                         fill
-                        className="object-cover opacity-60 mix-blend-soft-light"
-                    />
-                    {/* Pulsing light effect */}
-                    <motion.div
-                        animate={{
-                            opacity: [0.1, 0.3, 0.1],
-                        }}
-                        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                        className="absolute inset-0 bg-teal-400/20"
+                        className="object-cover"
                     />
                 </motion.div>
 
-                {/* Layer 2: The Avatar with "Pop-out" effect */}
+                {/* Layer 3: perfil.png - Foto (frente) */}
                 <motion.div
-                    initial={{ y: 60, opacity: 0 }}
-                    whileInView={{ y: 0, opacity: 1 }}
-                    whileHover={{ scale: 1.05, rotate: "2deg" }}
+                    initial={{ y: 60, opacity: 0, scale: 0.8 }}
+                    whileInView={{ y: 0, opacity: 1, scale: 0.9 }}
+                    whileHover={{ scale: 0.93, rotate: 2 }}
                     transition={{ duration: 1, delay: 0.3, type: "spring", damping: 12 }}
-                    className="absolute inset-0 z-10 rounded-full overflow-hidden aspect-square"
+                    className="absolute inset-0 z-10 rounded-full overflow-hidden"
                 >
-                    <motion.div
-                        whileHover={{ scale: 1.05, rotate: 2 }}
-                        className="relative w-full h-full rounded-2xl overflow-hidden border-4 border-white shadow-2xl z-20"
-                    >
+                    <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-white shadow-2xl">
                         <Image
                             src="/perfil.png"
                             alt="Daniel Munhoz - Marine Biologist"
                             fill
                             className="object-cover"
                         />
-                    </motion.div>
+                    </div>
                 </motion.div>
 
                 {/* Border layer on top */}
                 <div className="absolute inset-0 rounded-full border-4 border-teal-400/30 z-20 pointer-events-none" />
 
-                {/* Badges */}
+                {/* Badges com Emojis Apple */}
                 <Badge
-                    icon={Languages}
+                    emoji="🌍"
                     className="top-10 -right-8 md:-right-20"
                     delay={0.8}
                     floatDuration={3.2}
@@ -136,7 +143,7 @@ export default function AboutHero() {
                 </Badge>
 
                 <Badge
-                    icon={Dna}
+                    emoji="🧬"
                     className="bottom-20 -right-12 md:-right-24"
                     delay={1.0}
                     floatDuration={2.8}
@@ -145,7 +152,7 @@ export default function AboutHero() {
                 </Badge>
 
                 <Badge
-                    icon={Waves}
+                    emoji="🤿"
                     className="bottom-12 -left-12 md:-left-24"
                     delay={1.2}
                     floatDuration={3.5}
@@ -154,7 +161,7 @@ export default function AboutHero() {
                 </Badge>
 
                 <Badge
-                    icon={Leaf}
+                    emoji="🌿"
                     className="top-24 -left-12 md:-left-20"
                     delay={1.4}
                     floatDuration={3}
@@ -171,7 +178,7 @@ export default function AboutHero() {
                 className="mt-8 text-center"
             >
                 <h3 className="text-3xl md:text-4xl font-bold" style={{ fontFamily: 'var(--font-lexend)', color: '#008080' }}>
-                    Daniel Munhoz
+                    Daniel Munhoz & Larissa Uema
                 </h3>
             </motion.div>
 

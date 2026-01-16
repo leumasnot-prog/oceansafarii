@@ -16,14 +16,14 @@ const getFrameFilename = (index: number): string => {
     const secondStr = seconds.toString().padStart(2, "0");
 
     if (subFrame === 0) {
-        return `frame_0-00-${secondStr}.png`;
+        return `frame_0-00-${secondStr}.jpg`;
     }
 
     // Subframe format: frame_0-00-XX_XXXXXX
     const subFrameValues = ["040000", "080000", "120000", "170000", "210000", "250000", "290000", "330000", "380000", "420000", "460000", "500000", "540000", "580000", "620000", "670000", "710000", "750000", "790000", "830000", "880000", "920000", "960000"];
     const subFrameIndex = Math.min(subFrame - 1, subFrameValues.length - 1);
 
-    return `frame_0-00-${secondStr}_${subFrameValues[subFrameIndex]}.png`;
+    return `frame_0-00-${secondStr}_${subFrameValues[subFrameIndex]}.jpg`;
 };
 
 export default function HeroScrollSequence() {
