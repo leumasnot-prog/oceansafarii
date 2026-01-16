@@ -1,0 +1,502 @@
+@import "tailwindcss";
+
+/* ================================================================
+   OCEAN SAFARI - Design System
+   Typography: Lexend (UI/Body) + DM Serif Display (Headlines)
+   ================================================================ */
+
+:root {
+  /* Ilhabela Color Palette */
+  --ocean-teal: #008080;
+  --deep-navy: #0F172A;
+  --sand-white: #F8FAFC;
+  --action-green: #10B981;
+
+  /* Legacy Ocean Colors */
+  --ocean-surface: #00C4CC;
+  --ocean-reef: #005F73;
+  --ocean-deep: #0A192F;
+  --ocean-abyss: #020205;
+
+  /* Typography - Using Lexend variable font */
+  --font-lexend: "Lexend", system-ui, sans-serif;
+  --font-dm-serif: "DM Serif Display", Georgia, serif;
+
+  /* Font Weights for Lexend (100-900 available) */
+  --font-weight-thin: 100;
+  --font-weight-extralight: 200;
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+  --font-weight-black: 900;
+
+  /* Semantic Tokens */
+  --background: var(--deep-navy);
+  --foreground: var(--sand-white);
+
+  /* Border Radius */
+  --radius-sm: 0.75rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.5rem;
+  --radius-xl: 1.875rem;
+}
+
+/* ================================================================
+   BASE STYLES
+   ================================================================ */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-lexend);
+  font-weight: var(--font-weight-regular);
+  color: var(--sand-white);
+  background: var(--deep-navy);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Lexend has slightly increased letter-spacing for readability */
+  letter-spacing: -0.01em;
+}
+
+/* Typography Hierarchy with Lexend */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-lexend);
+  line-height: 1.2;
+  color: var(--sand-white);
+}
+
+/* Lexend weight scale for headings */
+h1 {
+  font-weight: var(--font-weight-bold);
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: -0.015em;
+}
+
+h3 {
+  font-weight: var(--font-weight-semibold);
+}
+
+h4,
+h5,
+h6 {
+  font-weight: var(--font-weight-medium);
+}
+
+/* Body text */
+p {
+  font-weight: var(--font-weight-regular);
+  line-height: 1.7;
+}
+
+/* Small/Label text - Lexend shines here */
+.text-label {
+  font-weight: var(--font-weight-medium);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+}
+
+/* ================================================================
+   UTILITY CLASSES - Lexend Weights
+   ================================================================ */
+
+.font-thin {
+  font-weight: 100;
+}
+
+.font-extralight {
+  font-weight: 200;
+}
+
+.font-light {
+  font-weight: 300;
+}
+
+.font-regular {
+  font-weight: 400;
+}
+
+.font-medium {
+  font-weight: 500;
+}
+
+.font-semibold {
+  font-weight: 600;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.font-extrabold {
+  font-weight: 800;
+}
+
+.font-black {
+  font-weight: 900;
+}
+
+/* Serif headlines */
+.font-serif-display {
+  font-family: var(--font-dm-serif);
+  font-style: italic;
+}
+
+/* ================================================================
+   COLOR UTILITIES
+   ================================================================ */
+
+.text-ocean-teal {
+  color: var(--ocean-teal) !important;
+}
+
+.text-deep-navy {
+  color: var(--deep-navy) !important;
+}
+
+.text-sand-white {
+  color: var(--sand-white) !important;
+}
+
+.text-action-green {
+  color: var(--action-green) !important;
+}
+
+.bg-ocean-teal {
+  background-color: var(--ocean-teal) !important;
+}
+
+.bg-deep-navy {
+  background-color: var(--deep-navy) !important;
+}
+
+.bg-sand-white {
+  background-color: var(--sand-white) !important;
+}
+
+.bg-action-green {
+  background-color: var(--action-green) !important;
+}
+
+/* Legacy */
+.text-ocean-surface {
+  color: var(--ocean-surface) !important;
+}
+
+.bg-ocean-surface {
+  background-color: var(--ocean-surface) !important;
+}
+
+.bg-ocean-reef {
+  background-color: var(--ocean-reef) !important;
+}
+
+.bg-ocean-deep {
+  background-color: var(--ocean-deep) !important;
+}
+
+.bg-ocean-abyss {
+  background-color: var(--ocean-abyss) !important;
+}
+
+/* ================================================================
+   COMPONENT STYLES
+   ================================================================ */
+
+/* Navigation links with Lexend */
+.nav-link {
+  font-weight: var(--font-weight-light);
+  letter-spacing: 0.01em;
+  transition: opacity 0.2s ease;
+}
+
+.nav-link:hover {
+  opacity: 0.7;
+}
+
+/* Buttons with Lexend */
+.btn {
+  font-family: var(--font-lexend);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0;
+}
+
+/* CTA Button */
+.btn-cta {
+  background: linear-gradient(135deg, var(--action-green), var(--ocean-teal)) !important;
+  color: var(--sand-white) !important;
+  border-radius: var(--radius-xl);
+  padding: 0.875rem 2rem;
+  font-weight: var(--font-weight-semibold);
+  box-shadow: 0 4px 20px rgba(16, 185, 129, 0.3);
+  transition: all 0.3s ease;
+}
+
+.btn-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(16, 185, 129, 0.4);
+}
+
+/* Glassmorphism */
+.glass {
+  background: rgba(15, 23, 42, 0.7) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(248, 250, 252, 0.1);
+  border-radius: var(--radius-lg);
+}
+
+/* ================================================================
+   ANIMATIONS
+   ================================================================ */
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+    opacity: 0.6;
+  }
+
+  50% {
+    transform: translateY(-20px);
+    opacity: 1;
+  }
+}
+
+@keyframes gradient-move {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-gradient-text {
+  background-size: 200% auto;
+  animation: gradient-move 3s ease infinite;
+}
+
+/* ================================================================
+   SCROLLBAR (Hidden)
+   ================================================================ */
+
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+* {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ================================================================
+   SHADOWS
+   ================================================================ */
+
+.shadow-ocean {
+  box-shadow: 0 10px 40px rgba(0, 128, 128, 0.2);
+}
+
+.shadow-action {
+  box-shadow: 0 10px 40px rgba(16, 185, 129, 0.25);
+}
+
+/* ================================================================
+   SCROLL SNAP & SMOOTH SCROLLING
+   ================================================================ */
+
+/* Smooth scroll behavior for the whole page */
+html {
+  scroll-behavior: smooth;
+}
+
+/* When scroll snap is enabled on the wrapper */
+.scroll-snap-enabled {
+  /* Marker class to enable scroll snap via :has() */
+  display: contents;
+}
+
+html:has(.scroll-snap-enabled) {
+  scroll-snap-type: y proximity;
+}
+
+/* Scroll snap section - apply to each major section */
+.scroll-snap-section,
+section[id] {
+  scroll-snap-align: start;
+  scroll-snap-stop: normal;
+  /* Add slight padding for visual breathing room */
+  scroll-margin-top: 20px;
+}
+
+/* ================================================================
+   REAL-TIME RENDERING ANIMATIONS
+   ================================================================ */
+
+/* Fade up animation */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fade in scale - for cards and buttons */
+@keyframes fade-in-scale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Shimmer loading effect */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Soft glow pulse */
+@keyframes glow-pulse {
+
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(20, 184, 166, 0.2);
+  }
+
+  50% {
+    box-shadow: 0 0 40px rgba(20, 184, 166, 0.4);
+  }
+}
+
+/* Animation utilities */
+.animate-fade-in-up {
+  animation: fade-in-up 0.8s ease-out forwards;
+}
+
+.animate-fade-in-scale {
+  animation: fade-in-scale 0.6s ease-out forwards;
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.1) 50%,
+      transparent 100%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+
+/* Stagger animation delays */
+.stagger-1 {
+  animation-delay: 0.05s;
+}
+
+.stagger-2 {
+  animation-delay: 0.1s;
+}
+
+.stagger-3 {
+  animation-delay: 0.15s;
+}
+
+.stagger-4 {
+  animation-delay: 0.2s;
+}
+
+.stagger-5 {
+  animation-delay: 0.25s;
+}
+
+.stagger-6 {
+  animation-delay: 0.3s;
+}
+
+.stagger-7 {
+  animation-delay: 0.35s;
+}
+
+.stagger-8 {
+  animation-delay: 0.4s;
+}
+
+/* ================================================================
+   PERFORMANCE OPTIMIZATIONS
+   ================================================================ */
+
+/* GPU acceleration for animated elements */
+.will-change-transform {
+  will-change: transform;
+}
+
+.will-change-opacity {
+  will-change: opacity;
+}
+
+/* Hardware acceleration hint */
+.gpu-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .scroll-snap-container {
+    scroll-snap-type: none;
+  }
+}
